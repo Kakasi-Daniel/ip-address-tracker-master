@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#mapid{
+    height: 70vh;
+    width: 100vw;
+    position: relative;
+    z-index: 1;
+}
+
+h1{
+    font-weight: 400;
+    padding-top: 20px;
+}
+
+.upper{
+    width: 100vw;
+    height: 30vh;
+    background: url(./images/pattern-bg.png) center center/cover no-repeat;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-family: 'Rubik', sans-serif;
+}
+
+.ipInfo{
+    width: 80vw;
+    background-color: #f4f4f4;
+    color: #000;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+    padding: 40px;
+    font-size: 18px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px #000;
+}
+
+.info:not(:last-child){
+    border-right: 1px darkblue solid;
+    padding-right: 20px;
+}
+
+.infoLabel{
+    font-size: 14px;
+    color: #666;
+}
+
+.ipInput{
+    margin-top: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-70%);
+    z-index: 1;
+}
+
+.ipInput input{
+    font-size: 18px;
+    padding: 10px 15px;
+    width: 400px;
+    border: none;
+    position: relative;
+    z-index: 1;
+    padding-right: 70px;
+}
+
+.ipInput button{
+    background-color: #000;
+    border: none;
+    width: 60px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.mapContainer{
+    position: relative;
+}
+
+.tag{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    transform: translate(-50%,-50%);
+}
+
+@media (max-width:600px) {
+    .info:not(:last-child){
+        border: none;
+        padding-right: 0;
+    }
+
+    #mapid{
+        height: 65vh;
+    }
+    .upper{
+        height: 35vh;
+    }
+
+    .ipInput{
+        width: 95vw;
+        top: 30%;
+    }
+
+    .ipInput input{
+        font-size: 16px;
+        padding: 15px;
+    }
+    .ipInfo{
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+    }
+    .info{
+        margin-bottom: 10px;
+    }
+
+    @media (max-height:700px) {
+        .ipInput input{
+            font-size: 14px;
+            padding: 7px;
+        }
+        .ipInfo{
+            font-size: 14px;
+            flex-direction: column;
+            text-align: center;
+            padding: 5px;
+        }
+    }
+
+}
+
