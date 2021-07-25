@@ -3,40 +3,40 @@ document.querySelector('button').onclick = () => {
   getIpInfo(ip);
 };
 
-document.querySelector('input').onkeydown = e =>{
-    if(e.key === 'Enter'){
-        getIpInfo(e.target.value);
-    }
-}
-
-const drawMap = (lat, lng) => {
-    if(document.querySelector('#mapid')){
-        document.querySelector('#mapid').remove();
-    }
-    const map = document.createElement('div');
-    map.id = 'mapid';
-    document.querySelector('.mapContainer').appendChild(map)
-    var mymap = L.map('mapid').setView([lat, lng], 13);
-    mymap.dragging.disable();
-    mymap.zoomControl.disable();
-    mymap.touchZoom.disable();
-    mymap.doubleClickZoom.disable();
-    mymap.scrollWheelZoom.disable();
-
-    L.tileLayer(
-      'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FrYXNpZGFuaWVsIiwiYSI6ImNrcmh0dDdxZTJwMmUydnF1NHZ3ZWFuZzcifQ.U7-SduifSknJvQADTQDVEg',
-      {
-        attribution:
-          'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken:
-          'pk.eyJ1Ijoia2FrYXNpZGFuaWVsIiwiYSI6ImNrcmh0dDdxZTJwMmUydnF1NHZ3ZWFuZzcifQ.U7-SduifSknJvQADTQDVEg',
-      }
-    ).addTo(mymap);
+document.querySelector('input').onkeydown = (e) => {
+  if (e.key === 'Enter') {
+    getIpInfo(e.target.value);
+  }
 };
+
+const initMap = () => {
+  var mymap = L.map('mapid').setView([20, 30], 13);
+  mymap.dragging.disable();
+  mymap.zoomControl.disable();
+  mymap.touchZoom.disable();
+  mymap.doubleClickZoom.disable();
+  mymap.scrollWheelZoom.disable();
+
+  L.tileLayer(
+    'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FrYXNpZGFuaWVsIiwiYSI6ImNrcmh0dDdxZTJwMmUydnF1NHZ3ZWFuZzcifQ.U7-SduifSknJvQADTQDVEg',
+    {
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken:
+        'pk.eyJ1Ijoia2FrYXNpZGFuaWVsIiwiYSI6ImNrcmh0dDdxZTJwMmUydnF1NHZ3ZWFuZzcifQ.U7-SduifSknJvQADTQDVEg',
+    }
+  ).addTo(mymap);
+
+  return function (lat, lng) {
+    mymap.panTo([lat, lng]);
+  };
+};
+
+const drawMap = initMap();
 
 async function getClientIp() {
   const res = await fetch('https://api.ipify.org/?format=json');
