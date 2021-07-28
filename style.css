@@ -19,7 +19,7 @@ h1{
 .upper{
     width: 100vw;
     height: 30vh;
-    background: url(./images/pattern-bg.png) center center/cover no-repeat;
+    background: linear-gradient(rgb(0, 0, 0),rgba(0, 0, 0, 0)),url(https://cdn.wallpapersafari.com/52/13/qwFQTD.jpg) center center/cover no-repeat;
     color: #fff;
     text-align: center;
     position: relative;
@@ -28,8 +28,8 @@ h1{
 
 .ipInfo{
     width: 80vw;
-    background-color: #f4f4f4;
-    color: #000;
+    background-color: #333;
+    color: greenyellow;
     display: flex;
     justify-content: space-between;
     text-align: left;
@@ -45,13 +45,13 @@ h1{
 }
 
 .info:not(:last-child){
-    border-right: 1px darkblue solid;
+    border-right: 1px rgb(252, 252, 252) solid;
     padding-right: 20px;
 }
 
 .infoLabel{
     font-size: 14px;
-    color: #666;
+    color: rgb(21, 133, 55);
 }
 
 .ipInput{

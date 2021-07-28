@@ -10,12 +10,7 @@ document.querySelector('input').onkeydown = (e) => {
 };
 
 const initMap = () => {
-  var mymap = L.map('mapid').setView([20, 30], 13);
-  mymap.dragging.disable();
-  mymap.zoomControl.disable();
-  mymap.touchZoom.disable();
-  mymap.doubleClickZoom.disable();
-  mymap.scrollWheelZoom.disable();
+  var mymap = L.map('mapid').setView([20, 20], 13);
 
   L.tileLayer(
     'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2FrYXNpZGFuaWVsIiwiYSI6ImNrcmh0dDdxZTJwMmUydnF1NHZ3ZWFuZzcifQ.U7-SduifSknJvQADTQDVEg',
@@ -23,7 +18,7 @@ const initMap = () => {
       attribution:
         'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
-      id: 'mapbox/streets-v11',
+      id: 'mapbox/dark-v10',
       tileSize: 512,
       zoomOffset: -1,
       accessToken:
@@ -31,8 +26,17 @@ const initMap = () => {
     }
   ).addTo(mymap);
 
+  document.querySelector('.leaflet-control-zoom').style.display = 'none';
+  document.querySelector('.leaflet-control-container').style.opacity = '0';
+
   return function (lat, lng) {
-    mymap.panTo([lat, lng]);
+    mymap.flyTo([lat, lng], 13);
+    var circle = L.circle([lat, lng], {
+      color: 'rgba(0, 173, 255,0.5)',
+      fillColor: 'rgba(0, 173, 255)',
+      fillOpacity: 0.2,
+      radius: 1000,
+    }).addTo(mymap);
   };
 };
 
